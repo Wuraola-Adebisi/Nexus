@@ -8,7 +8,7 @@ A full tech conference website built with HTML and CSS. Eleven sections, a CSS-o
 ## About
 NEXUS 2026 is a concept website for a fictional fifth annual global technology conference held in Lagos, Nigeria. The project was built to demonstrate advanced HTML and CSS skills across a large, multi-section real-world project — the kind of site a client would actually commission.
 
-## 🛠 Built With
+## Built With
 - HTML5
 - CSS3
 - Google Fonts (Space Grotesk, Inter, JetBrains Mono)
