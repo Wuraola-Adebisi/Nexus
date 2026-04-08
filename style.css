@@ -109,6 +109,20 @@ nav ul li a:hover {
   overflow: hidden;
 }
 
+.hero-orb {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(0, 82, 255, 0.35), transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .hero-content {
   max-width: 760px;
   z-index: 2;
