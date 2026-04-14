@@ -1,6 +1,6 @@
 # NEXUS 2026
 
-A full tech conference website built with HTML and CSS. Eleven sections, a CSS-only flyer modal, animated speaker cards, a live countdown, sponsor tiers, and a registration form. No JavaScript was harmed in the making of this site.
+A full tech conference website built with HTML, CSS, and JavaScript. Eleven sections, a CSS-only flyer modal, animated speaker cards, a live countdown, sponsor tiers, and a registration form. No JavaScript was harmed in the making of this site.
 
 ## Live Site
 [View Live](https://wuraola-adebisi.github.io/Nexus/)
