@@ -24,16 +24,20 @@
   <main>
     <section id="hero">
       <div class="hero-grid"></div>
-      <div class="hero-orb hero-orb-large"></div>
-      <div class="hero-orb hero-orb-medium"></div>
-      <div class="hero-orb hero-orb-small"></div>
+      <div class="hero-lines" aria-hidden="true">
+        <span class="hero-line hero-line-1"></span>
+        <span class="hero-line hero-line-2"></span>
+        <span class="hero-line hero-line-3"></span>
+        <span class="hero-line hero-line-4"></span>
+        <span class="hero-line hero-line-5"></span>
+      </div>
       <div class="hero-content">
         <h2>The Future Doesn't Wait. Neither Should You.</h2>
         <p>NEXUS 2026 brings together 3,000 builders, founders, engineers, and thinkers for three days of talks, workshops, and conversations that actually matter. Lagos. <time datetime="2026-09">September 2026.</time> Be there.</p>
         <div class="hero-buttons">
           <a href="#register" class="btn-primary">Register Now</a>
           <a href="#programme" class="btn-secondary">View Programme</a>
-          <a href="#programme" class="btn-secondary">Quick Programme</a>
+          <a href="#schedule" class="btn-secondary">Quick Programme</a>
         </div>
       </div>
       <div class="hero-stats reveal-on-scroll">
@@ -280,7 +284,7 @@
       <h2>Five Years Of Building What's Next</h2>
       <div class="about-columns">
         <p>NEXUS started in 2021 as a small gathering of 200 engineers in a borrowed conference room in London. The idea was simple: get the people who are actually building technology in the same room as the people who are funding and designing it, and see what happens. What happened was three days of conversations so good that people missed their flights on purpose.</p>
-        <p>Five years later, NEXUS has grown into one of the most anticipated technology conferences in the world. Not because of the production budget - though that has improved significantly since the borrowed conference room - but because of the quality of the people in the room. We are relentlessly selective about our speakers, our sponsors, and our agenda. If it isn't genuinely useful or genuinely interesting, it doesn't make the programme.</p>
+        <p>Five years later NEXUS has grown into one of the most anticipated technology conferences in the world. Not because of the production budget - though that has improved significantly since the borrowed conference room - but because of the quality of the people in the room. We are relentlessly selective about our speakers, our sponsors, and our agenda. If it isn't genuinely useful or genuinely interesting, it doesn't make the programme.</p>
         <p>NEXUS 2026 is our first year in Lagos, and we could not be more intentional about that choice. The technology ecosystem in Africa is not emerging. It has emerged. We are here to meet it where it is.</p>
       </div>
       <blockquote>
@@ -413,6 +417,7 @@
   <a href="#hero" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
   <div id="programme" class="flyer-overlay">
+    <a href="#hero" class="modal-backdrop" aria-label="Close programme modal"></a>
     <div class="flyer-card">
       <a href="#hero" class="flyer-close" aria-label="Close programme modal">&#10005;</a>
       <div class="flyer-inner">
