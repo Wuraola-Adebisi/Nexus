@@ -23,14 +23,17 @@
 
   <main>
     <section id="hero">
-      <div class="hero-orb"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-orb hero-orb-large"></div>
+      <div class="hero-orb hero-orb-medium"></div>
+      <div class="hero-orb hero-orb-small"></div>
       <div class="hero-content">
         <h2>The Future Doesn't Wait. Neither Should You.</h2>
         <p>NEXUS 2026 brings together 3,000 builders, founders, engineers, and thinkers for three days of talks, workshops, and conversations that actually matter. Lagos. <time datetime="2026-09">September 2026.</time> Be there.</p>
         <div class="hero-buttons">
           <a href="#register" class="btn-primary">Register Now</a>
-          <a href="#schedule" class="btn-secondary">View Programme</a>
-          <a href="#flyer" class="btn-secondary">View Event Flyer</a>
+          <a href="#programme" class="btn-secondary">View Programme</a>
+          <a href="#programme" class="btn-secondary">Quick Programme</a>
         </div>
       </div>
       <div class="hero-stats reveal-on-scroll">
@@ -169,7 +172,7 @@
         <h2>Dr. Amara Osei</h2>
         <p class="featured-role">Chief AI Officer, DeepMind</p>
         <p class="featured-talk">"The Quiet Revolution: How AI Is Rebuilding Infrastructure"</p>
-        <a href="#schedule" class="btn-primary">View Full Schedule</a>
+        <a href="#programme" class="btn-primary">View Full Programme</a>
       </div>
     </div>
 
@@ -277,7 +280,7 @@
       <h2>Five Years Of Building What's Next</h2>
       <div class="about-columns">
         <p>NEXUS started in 2021 as a small gathering of 200 engineers in a borrowed conference room in London. The idea was simple: get the people who are actually building technology in the same room as the people who are funding and designing it, and see what happens. What happened was three days of conversations so good that people missed their flights on purpose.</p>
-        <p>Five years later NEXUS has grown into one of the most anticipated technology conferences in the world. Not because of the production budget - though that has improved significantly since the borrowed conference room - but because of the quality of the people in the room. We are relentlessly selective about our speakers, our sponsors, and our agenda. If it isn't genuinely useful or genuinely interesting, it doesn't make the programme.</p>
+        <p>Five years later, NEXUS has grown into one of the most anticipated technology conferences in the world. Not because of the production budget - though that has improved significantly since the borrowed conference room - but because of the quality of the people in the room. We are relentlessly selective about our speakers, our sponsors, and our agenda. If it isn't genuinely useful or genuinely interesting, it doesn't make the programme.</p>
         <p>NEXUS 2026 is our first year in Lagos, and we could not be more intentional about that choice. The technology ecosystem in Africa is not emerging. It has emerged. We are here to meet it where it is.</p>
       </div>
       <blockquote>
@@ -394,7 +397,7 @@
 
   <footer>
     <ul>
-      <li><a href="#schedule">Programme</a></li>
+      <li><a href="#programme">Programme</a></li>
       <li><a href="#speakers">Speakers</a></li>
       <li><a href="#tickets">Tickets</a></li>
       <li><a href="#venue">Venue</a></li>
@@ -409,26 +412,50 @@
 
   <a href="#hero" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
-  <div id="flyer" class="flyer-overlay">
+  <div id="programme" class="flyer-overlay">
     <div class="flyer-card">
-      <a href="#hero" class="flyer-close" aria-label="Close flyer modal">&#10005;</a>
+      <a href="#hero" class="flyer-close" aria-label="Close programme modal">&#10005;</a>
       <div class="flyer-inner">
-        <p class="flyer-edition">Fifth Annual - 2026</p>
+        <p class="flyer-edition">Programme Quick View</p>
         <h2 class="flyer-title">NEXUS</h2>
-        <p class="flyer-tagline">Where technology meets intention.</p>
+        <p class="flyer-tagline">Three days of ideas, systems, builders, and conversations.</p>
         <div class="flyer-divider"></div>
         <p class="flyer-date">September 14-16, 2026</p>
         <p class="flyer-venue">Eko Convention Centre - Victoria Island, Lagos</p>
-        <div class="flyer-speakers">
-          <p>Dr. Amara Osei</p>
-          <p>Kolade Agboola</p>
-          <p>Oluwatosin Adedapo</p>
-          <p>Oluwatobiloba Adebisi</p>
-          <p>Oluwadamilola Agboluaje</p>
-          <p>Akintomiwa Kolawole</p>
+        <div class="programme-days">
+          <section class="programme-day">
+            <p class="programme-day-label">Day 1</p>
+            <h3>Infrastructure And Systems</h3>
+            <ul class="programme-list">
+              <li>Opening Keynote with Dr. Amara Osei</li>
+              <li>Payments At Scale</li>
+              <li>Zero Trust Philosophy</li>
+              <li>Fireside Chat: Funding in 2026</li>
+            </ul>
+          </section>
+          <section class="programme-day">
+            <p class="programme-day-label">Day 2</p>
+            <h3>Design, Product, And Growth</h3>
+            <ul class="programme-list">
+              <li>Product Strategy Roundtables</li>
+              <li>The Interface Is The Product</li>
+              <li>Growth Workshops</li>
+              <li>Speaker Dinner Sessions</li>
+            </ul>
+          </section>
+          <section class="programme-day">
+            <p class="programme-day-label">Day 3</p>
+            <h3>Capital, Startups, And Community</h3>
+            <ul class="programme-list">
+              <li>What We're Actually Funding In 2026</li>
+              <li>Founder Clinics</li>
+              <li>Operator Networking</li>
+              <li>Closing Reception</li>
+            </ul>
+          </section>
         </div>
         <div class="flyer-divider"></div>
-        <p class="flyer-url">nexus2026.io</p>
+        <a href="#register" class="btn-primary">Reserve Your Spot</a>
       </div>
     </div>
   </div>
