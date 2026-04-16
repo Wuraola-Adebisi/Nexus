@@ -1,5 +1,11 @@
-const eventDate = new Date("September 14, 2026");
+const eventDate = new Date("2026-09-14T09:00:00+01:00");
 const countdownNumbers = document.querySelectorAll(".countdown-number");
+const form = document.querySelector("#register form");
+const ticketSelect = document.querySelector("#ticket");
+const ticketButtons = document.querySelectorAll("[data-ticket]");
+const navLinks = document.querySelectorAll("header nav a");
+const sections = document.querySelectorAll("main section");
+const animatedElements = document.querySelectorAll(".reveal-on-scroll");
 
 const interval = setInterval(updateCountdown, 1000);
 
@@ -17,6 +23,10 @@ function getTimeParts(distance) {
 }
 
 function render({ days, hours, minutes, seconds }) {
+  if (countdownNumbers.length < 4) {
+    return;
+  }
+
   countdownNumbers[0].textContent = format(days);
   countdownNumbers[1].textContent = format(hours);
   countdownNumbers[2].textContent = format(minutes);
@@ -24,7 +34,7 @@ function render({ days, hours, minutes, seconds }) {
 }
 
 function updateCountdown() {
-  const now = new Date().getTime();
+  const now = Date.now();
   const distance = eventDate - now;
 
   if (distance <= 0) {
@@ -38,15 +48,13 @@ function updateCountdown() {
 
 updateCountdown();
 
-
-
-const form = document.querySelector("#register form");
-
-
 const feedback = document.createElement("div");
 feedback.id = "feedback";
-form.prepend(feedback);
+feedback.setAttribute("aria-live", "polite");
 
+if (form) {
+  form.prepend(feedback);
+}
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -69,17 +77,7 @@ function getFormData() {
 
 function showMessage(message, type) {
   feedback.textContent = message;
-  feedback.style.padding = "12px";
-  feedback.style.marginBottom = "16px";
-  feedback.style.borderRadius = "4px";
-
-  if (type === "error") {
-    feedback.style.color = "#b00020";
-    feedback.style.background = "#ffe5e5";
-  } else {
-    feedback.style.color = "#0a6b3f";
-    feedback.style.background = "#e6fff2";
-  }
+  feedback.className = `is-visible ${type === "error" ? "is-error" : "is-success"}`;
 }
 
 function saveToStorage(data) {
@@ -89,57 +87,79 @@ function saveToStorage(data) {
 }
 
 function resetForm() {
+  if (!form) {
+    return;
+  }
+
   form.reset();
 }
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const data = getFormData();
-
-
-  if (!data.name) {
-    showMessage("Name is required", "error");
+function selectTicket(ticketValue) {
+  if (!ticketSelect) {
     return;
   }
 
-  if (!isValidEmail(data.email)) {
-    showMessage("Invalid email format", "error");
-    return;
-  }
+  ticketSelect.value = ticketValue;
+  ticketSelect.focus();
+}
 
-  if (!isValidTicket(data.ticket)) {
-    showMessage("Please select a ticket tier", "error");
-    return;
-  }
+ticketButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const chosenTicket = button.dataset.ticket;
 
-  saveToStorage(data);
+    selectTicket(chosenTicket);
 
-  showMessage(
-    `Registration successful: ${data.name} (${data.ticket})`,
-    "success"
-  );
+    document.querySelector("#register").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
 
-  resetForm();
+    showMessage(`Selected ${chosenTicket} ticket. Complete the form to reserve your spot.`, "success");
+  });
 });
 
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-const navLinks = document.querySelectorAll("header nav a");
-const sections = document.querySelectorAll("main section");
+    const data = getFormData();
+
+    if (!data.name) {
+      showMessage("Name is required.", "error");
+      return;
+    }
+
+    if (!isValidEmail(data.email)) {
+      showMessage("Enter a valid email address.", "error");
+      return;
+    }
+
+    if (!isValidTicket(data.ticket)) {
+      showMessage("Please select a ticket tier.", "error");
+      return;
+    }
+
+    saveToStorage(data);
+    showMessage(`Registration successful: ${data.name} reserved a ${data.ticket} ticket.`, "success");
+    resetForm();
+  });
+}
 
 function setActiveLink(id) {
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.classList.remove("active");
+    link.removeAttribute("aria-current");
 
     if (link.getAttribute("href") === `#${id}`) {
       link.classList.add("active");
+      link.setAttribute("aria-current", "page");
     }
   });
 }
 
 const observer = new IntersectionObserver(
   (entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setActiveLink(entry.target.id);
       }
@@ -148,26 +168,20 @@ const observer = new IntersectionObserver(
   { threshold: 0.6 }
 );
 
-sections.forEach(section => observer.observe(section));
-
-
-
-const animatedElements = document.querySelectorAll(
-  ".speaker-card, .hero-stats, #about, #tickets, #speakers, #schedule"
-);
+sections.forEach((section) => observer.observe(section));
 
 const animationObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
+  (entries, revealObserver) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   },
   { threshold: 0.2 }
 );
 
-animatedElements.forEach(el => {
-  animationObserver.observe(el);
+animatedElements.forEach((element) => {
+  animationObserver.observe(element);
 });
