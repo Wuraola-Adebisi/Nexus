@@ -6,6 +6,7 @@ const ticketButtons = document.querySelectorAll("[data-ticket]");
 const navLinks = document.querySelectorAll("header nav a");
 const sections = document.querySelectorAll("main section");
 const animatedElements = document.querySelectorAll(".reveal-on-scroll");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const interval = setInterval(updateCountdown, 1000);
 
@@ -81,9 +82,14 @@ function showMessage(message, type) {
 }
 
 function saveToStorage(data) {
-  const existing = JSON.parse(localStorage.getItem("registrations")) || [];
-  existing.push(data);
-  localStorage.setItem("registrations", JSON.stringify(existing));
+  try {
+    const existing = JSON.parse(localStorage.getItem("registrations")) || [];
+    existing.push({ ...data, registeredAt: new Date().toISOString() });
+    localStorage.setItem("registrations", JSON.stringify(existing));
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 function resetForm() {
@@ -110,7 +116,7 @@ ticketButtons.forEach((button) => {
     selectTicket(chosenTicket);
 
     document.querySelector("#register").scrollIntoView({
-      behavior: "smooth",
+      behavior: prefersReducedMotion ? "auto" : "smooth",
       block: "start",
     });
 
@@ -139,8 +145,10 @@ if (form) {
       return;
     }
 
-    saveToStorage(data);
-    showMessage(`Registration successful: ${data.name} reserved a ${data.ticket} ticket.`, "success");
+    const saved = saveToStorage(data);
+    const storageNote = saved ? "" : " Your browser blocked local saving, but this demo form still accepted the entry.";
+
+    showMessage(`Registration successful: ${data.name} reserved a ${data.ticket} ticket.${storageNote}`, "success");
     resetForm();
   });
 }
@@ -182,6 +190,18 @@ const animationObserver = new IntersectionObserver(
   { threshold: 0.2 }
 );
 
-animatedElements.forEach((element) => {
-  animationObserver.observe(element);
+if (prefersReducedMotion) {
+  animatedElements.forEach((element) => element.classList.add("visible"));
+} else {
+  animatedElements.forEach((element) => {
+    animationObserver.observe(element);
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  const modalHashes = ["#programme", "#conduct"];
+
+  if (event.key === "Escape" && modalHashes.includes(window.location.hash)) {
+    window.location.hash = "hero";
+  }
 });
