@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
 }
 
 :root {
@@ -51,6 +52,26 @@ body {
   background: var(--bgWhite);
   width: 100%;
   min-height: 100vh;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 3000;
+  background: var(--accentElectric);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Header */
@@ -1182,12 +1203,44 @@ details[open] summary::after {
   text-transform: uppercase;
 }
 
+.modal-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.05;
+}
+
 .flyer-tagline {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.45);
   letter-spacing: 1px;
   font-style: italic;
+}
+
+.conduct-list {
+  display: grid;
+  gap: 14px;
+  margin: 8px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.conduct-list p {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding-left: 18px;
+  position: relative;
+}
+
+.conduct-list p::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-size: 0.78rem;
 }
 
 .flyer-divider {
@@ -1449,5 +1502,21 @@ footer em {
   }
   .hero-noise {
     opacity: 0.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
   }
 }
