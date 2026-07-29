@@ -1400,28 +1400,7 @@ footer em {
 }
 
 /* Back To Top */
-.back-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 48px;
-  height: 48px;
-  background: var(--accentElectric);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  text-decoration: none;
-  border-radius: 2px;
-  z-index: 999;
-  transition: background 0.2s, transform 0.2s;
-}
 
-.back-to-top:hover {
-  background: #0040cc;
-  transform: translateY(-3px);
-}
 
 /* Scroll Reveal */
 .reveal-on-scroll {
