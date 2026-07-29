@@ -148,7 +148,7 @@ summary:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--nav-height) 60px 80px;
+  padding: 80px 60px 80px;
   position: relative;
   overflow: hidden;
 }
