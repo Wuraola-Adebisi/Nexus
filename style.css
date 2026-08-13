@@ -183,7 +183,7 @@ summary:focus-visible {
   max-width: 760px;
   z-index: 2;
   animation: fadeUp 0.8s ease forwards;
-  padding-top: 20px;
+  padding-top: 30px;
   margin-top: 20px;
 }
 
@@ -259,7 +259,7 @@ summary:focus-visible {
 .hero-stats {
   display: flex;
   gap: 48px;
-  margin-top: 64px;
+  margin-top: 34px;
   padding: 24px 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
