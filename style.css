@@ -183,8 +183,8 @@ summary:focus-visible {
   max-width: 760px;
   z-index: 2;
   animation: fadeUp 0.8s ease forwards;
-  padding-top: 10px;
-  margin-top: 10px;
+  padding-top: 20px;
+  margin-top: 20px;
 }
 
 #hero h2 {
