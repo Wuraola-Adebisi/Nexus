@@ -1,5 +1,6 @@
-const eventDate = new Date("2026-09-14T09:00:00+01:00");
+const eventDate = new Date("2026-12-14T09:00:00+01:00");
 const countdownNumbers = document.querySelectorAll(".countdown-number");
+const registerSection = document.querySelector("#register");
 const form = document.querySelector("#register form");
 const ticketSelect = document.querySelector("#ticket");
 const ticketButtons = document.querySelectorAll("[data-ticket]");
@@ -8,17 +9,22 @@ const sections = document.querySelectorAll("main section");
 const animatedElements = document.querySelectorAll(".reveal-on-scroll");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const interval = setInterval(updateCountdown, 1000);
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * MINUTE;
+const DAY = 24 * HOUR;
+
+const interval = setInterval(updateCountdown, SECOND);
 
 function format(value) {
   return String(value).padStart(2, "0");
 }
 
 function getTimeParts(distance) {
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const days = Math.floor(distance / DAY);
+  const hours = Math.floor((distance % DAY) / HOUR);
+  const minutes = Math.floor((distance % HOUR) / MINUTE);
+  const seconds = Math.floor((distance % MINUTE) / SECOND);
 
   return { days, hours, minutes, seconds };
 }
@@ -67,12 +73,12 @@ function isValidTicket(ticket) {
 
 function getFormData() {
   return {
-    name: document.querySelector("#name").value.trim(),
-    email: document.querySelector("#email").value.trim(),
-    job: document.querySelector("#jobtitle").value.trim(),
-    company: document.querySelector("#company").value.trim(),
-    ticket: document.querySelector("#ticket").value,
-    source: document.querySelector("#source").value,
+    name: form.querySelector("#name").value.trim(),
+    email: form.querySelector("#email").value.trim(),
+    job: form.querySelector("#jobtitle").value.trim(),
+    company: form.querySelector("#company").value.trim(),
+    ticket: ticketSelect.value,
+    source: form.querySelector("#source").value,
   };
 }
 
@@ -115,7 +121,7 @@ ticketButtons.forEach((button) => {
 
     selectTicket(chosenTicket);
 
-    document.querySelector("#register").scrollIntoView({
+    registerSection?.scrollIntoView({
       behavior: prefersReducedMotion ? "auto" : "smooth",
       block: "start",
     });
